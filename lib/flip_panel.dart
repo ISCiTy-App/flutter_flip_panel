@@ -33,6 +33,11 @@ class FlipClock extends StatelessWidget {
   final bool _showHours;
   final bool showDays;
 
+  final String daysLabel;
+  final String hoursLabel;
+  final String minutesLabel;
+  final String secondsLabel;
+
   Duration timeLeft;
 
   /// Called when the countdown clock hits zero.
@@ -52,6 +57,10 @@ class FlipClock extends StatelessWidget {
     this.height = 44.0,
     this.width = 60.0,
     this.timeLeft,
+    this.daysLabel,
+    this.hoursLabel,
+    this.minutesLabel,
+    this.secondsLabel
   })  : _showHours = true,
         showDays = false,
         _digitBuilder = digitBuilder,
@@ -70,6 +79,10 @@ class FlipClock extends StatelessWidget {
     this.height = 60.0,
     this.width = 44.0,
     this.timeLeft,
+    this.daysLabel,
+    this.hoursLabel,
+    this.minutesLabel,
+    this.secondsLabel
   })  : countdownMode = false,
         _showHours = true,
         showDays = false,
@@ -121,6 +134,10 @@ class FlipClock extends StatelessWidget {
     this.height = 60.0,
     this.width = 44.0,
     this.startTime,
+    this.daysLabel,
+    this.hoursLabel,
+    this.minutesLabel,
+    this.secondsLabel
   })  : countdownMode = true,
         timeLeft = duration,
         _showHours = duration.inHours > 0,
@@ -173,6 +190,10 @@ class FlipClock extends StatelessWidget {
     this.flipDirection = FlipDirection.down,
     this.height = 40.0,
     this.width = 24.0,
+    this.daysLabel,
+    this.hoursLabel,
+    this.minutesLabel,
+    this.secondsLabel
   })  : countdownMode = true,
         startTime = DateTime(2018, 0, 0, 0, 0, duration.inSeconds),
         _showHours = true,
@@ -246,7 +267,7 @@ class FlipClock extends StatelessWidget {
             (DateTime time) =>
                 (timeLeft.inDays > 99) ? 9 : (timeLeft.inDays % 10),
             startTime,
-            "days"),
+            daysLabel ?? "Days"),
         Column(
           children: <Widget>[
             Padding(
@@ -274,7 +295,7 @@ class FlipClock extends StatelessWidget {
                 ? (timeLeft.inHours % 24) % 10
                 : (time.hour) % 10,
             startTime,
-            "Hours"),
+            hoursLabel ?? "Hours"),
         Column(
           children: <Widget>[
             Padding(
@@ -304,7 +325,7 @@ class FlipClock extends StatelessWidget {
                   ? (timeLeft.inMinutes % 60) % 10
                   : (time.minute) % 10,
               startTime,
-              "minutes"),
+              minutesLabel ?? "Minutes"),
 
           Column(
             children: <Widget>[
@@ -330,7 +351,7 @@ class FlipClock extends StatelessWidget {
                   ? (timeLeft.inSeconds % 60) % 10
                   : (time.second) % 10,
               startTime,
-              "seconds")
+              secondsLabel ?? "Seconds")
         ]),
     );
   }
@@ -361,34 +382,29 @@ class FlipClock extends StatelessWidget {
             ),
           ),
         ]),
-        // (showDays)
-        //     ? Row(
-        //         children: <Widget>[
-        //           Padding(
-        //             padding: const EdgeInsets.all(1.0),
-        //             child: ClipRRect(
-        //               borderRadius: BorderRadius.circular(3.0),
-        //               child: Container(
-        //                 decoration: BoxDecoration(
-        //                   color: Colors.black,
-        //                 ),
-        //                 child: Padding(
-        //                   padding: const EdgeInsets.all(2.0),
-        //                   child: Text(
-        //                     id.toUpperCase(),
-        //                     style: TextStyle(
-        //                       color: Colors.white,
-        //                       fontSize: 8.0,
-        //                       fontWeight: FontWeight.bold,
-        //                     ),
-        //                   ),
-        //                 ),
-        //               ),
-        //             ),
-        //           )
-        //         ],
-        //       )
-        //     : Row()
+        Row(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(3.0),
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Text(
+                      id.toUpperCase(),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 8.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        )
       ],
     );
   }
