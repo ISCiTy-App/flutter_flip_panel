@@ -237,7 +237,7 @@ class FlipClock extends StatelessWidget {
     // TODO(efortuna): Instead, allow the user to specify the format of time instead.
     // Add hours if appropriate.
 
-    if (_showDays) {
+    if (showDays) {
       digitList.addAll([
         _buildSegment(
             timeStream,
@@ -281,7 +281,7 @@ class FlipClock extends StatelessWidget {
               padding: spacing,
               child: _separator,
             ),
-            (_showDays)
+            (showDays)
                 ? Container(color: Colors.black)
                 : Container(
                     color: Colors.transparent,
@@ -312,7 +312,7 @@ class FlipClock extends StatelessWidget {
                 padding: spacing,
                 child: _separator,
               ),
-              (_showDays)
+              (showDays)
                   ? Container(color: Colors.black)
                   : Container(
                       color: Colors.transparent,
@@ -361,7 +361,7 @@ class FlipClock extends StatelessWidget {
             ),
           ),
         ]),
-        // (_showDays)
+        // (showDays)
         //     ? Row(
         //         children: <Widget>[
         //           Padding(
