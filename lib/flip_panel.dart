@@ -31,7 +31,7 @@ class FlipClock extends StatelessWidget {
   final bool countdownMode;
 
   final bool _showHours;
-  final bool _showDays;
+  final bool showDays;
 
   Duration timeLeft;
 
@@ -53,7 +53,7 @@ class FlipClock extends StatelessWidget {
     this.width = 60.0,
     this.timeLeft,
   })  : _showHours = true,
-        _showDays = false,
+        showDays = false,
         _digitBuilder = digitBuilder,
         _separator = separator,
         onDone = null;
@@ -72,7 +72,7 @@ class FlipClock extends StatelessWidget {
     this.timeLeft,
   })  : countdownMode = false,
         _showHours = true,
-        _showDays = false,
+        showDays = false,
         onDone = null {
     _digitBuilder = (context, digit) => Container(
           alignment: Alignment.center,
@@ -124,7 +124,7 @@ class FlipClock extends StatelessWidget {
   })  : countdownMode = true,
         timeLeft = duration,
         _showHours = duration.inHours > 0,
-        _showDays = false {
+        showDays = false {
     _digitBuilder = (context, digit) => Container(
           alignment: Alignment.center,
           width: width,
@@ -176,7 +176,7 @@ class FlipClock extends StatelessWidget {
   })  : countdownMode = true,
         startTime = DateTime(2018, 0, 0, 0, 0, duration.inSeconds),
         _showHours = true,
-        _showDays = true,
+        showDays = true,
         timeLeft = duration {
     _digitBuilder = (context, digit) => Container(
           alignment: Alignment.center,
@@ -253,7 +253,7 @@ class FlipClock extends StatelessWidget {
               padding: spacing,
               child: _separator,
             ),
-            (_showDays)
+            (showDays)
                 ? Container(color: Colors.black)
                 : Container(
                     color: Colors.transparent,
@@ -361,34 +361,34 @@ class FlipClock extends StatelessWidget {
             ),
           ),
         ]),
-        (_showDays)
-            ? Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(3.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Text(
-                            id.toUpperCase(),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 8.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              )
-            : Row()
+        // (_showDays)
+        //     ? Row(
+        //         children: <Widget>[
+        //           Padding(
+        //             padding: const EdgeInsets.all(1.0),
+        //             child: ClipRRect(
+        //               borderRadius: BorderRadius.circular(3.0),
+        //               child: Container(
+        //                 decoration: BoxDecoration(
+        //                   color: Colors.black,
+        //                 ),
+        //                 child: Padding(
+        //                   padding: const EdgeInsets.all(2.0),
+        //                   child: Text(
+        //                     id.toUpperCase(),
+        //                     style: TextStyle(
+        //                       color: Colors.white,
+        //                       fontSize: 8.0,
+        //                       fontWeight: FontWeight.bold,
+        //                     ),
+        //                   ),
+        //                 ),
+        //               ),
+        //             ),
+        //           )
+        //         ],
+        //       )
+        //     : Row()
       ],
     );
   }
